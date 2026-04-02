@@ -477,8 +477,8 @@ struct DayCell: View {
                             ZStack {
                                 Rectangle()
                                     .fill(CalendarConstants.backgroundColor)
-                                    .cornerRadius(isStartDate ? 8 : 0, corners: [.topRight, .bottomRight])
-                                    .cornerRadius(isEndDate ? 8 : 0, corners: [.topLeft, .bottomLeft])
+                                    .cornerRadius(!isStartDate ? 8 : 0, corners: [.topRight, .bottomRight])
+                                    .cornerRadius(!isEndDate ? 8 : 0, corners: [.topLeft, .bottomLeft])
                                 
                                 Circle()
                                     .fill(LinearGradient(
@@ -496,17 +496,17 @@ struct DayCell: View {
                             }
                         } else if isInRange {
                             Rectangle()
-                                                .fill(CalendarConstants.backgroundColor)
-                                                .opacity(appearAnimation ? 1 : 0)
-                                                .scaleEffect(appearAnimation ? 1 : 0.9)
-                                                .animation(
-                                                    Animation.spring(response: 0.5, dampingFraction: 0.7)
-                                                        .delay(Double(indexInRange ?? 0) * 0.1),
-                                                    value: appearAnimation
-                                                )
-                                                .onAppear {
-                                                    appearAnimation = true
-                                                }
+                              .fill(CalendarConstants.backgroundColor)
+                              .opacity(appearAnimation ? 1 : 0)
+                              .scaleEffect(appearAnimation ? 1 : 0.9)
+                              .animation(
+                                Animation.spring(response: 0.5, dampingFraction: 0.7)
+                                .delay(Double(indexInRange ?? 0) * 0.1),
+                                value: appearAnimation
+                                )
+                               .onAppear {
+                                appearAnimation = true
+                              }
                         } else if isToday {
                             Rectangle()
                                 .fill(CalendarConstants.backgroundColor)
